@@ -60,9 +60,9 @@ public class RedditLogin {
     void testRD_1_02() throws InterruptedException {
         // test case ID: RD_1_02 --> Verify that username text box is working
         // ---------------------------------------------------------------------------------
-        // using the already open window, select the username box and enter the username
+        // select the username box and enter the username
         try {
-            chromeDriver.findElement(By.id("login-username")).sendKeys("username");
+            chromeDriver.findElement(By.id("login-username")).sendKeys("CENTestUser");
         } catch (Exception e){
             //just here to assert test passed
             Assert.assertEquals(0,1);
@@ -78,7 +78,7 @@ public class RedditLogin {
         // ---------------------------------------------------------------------------------
         // using the already open window, select the password box and enter the password
         try {
-            chromeDriver.findElement(By.id("login-password")).sendKeys("password");
+            chromeDriver.findElement(By.id("login-password")).sendKeys("CENTestPass");
         } catch (Exception e){
             //just here to assert test passed
             Assert.assertEquals(0,1);
