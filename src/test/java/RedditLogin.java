@@ -31,11 +31,11 @@ public class RedditLogin {
     }
     @BeforeTest
     void pretestMessage() {
-        System.out.println("Test " + test_num + "starting...");
+        System.out.println("Test " + test_num + " starting...");
     }
     @AfterTest
     void posttestMessage() {
-        System.out.println("Test " + test_num + "compelted. Moving on to test " + ++test_num);
+        System.out.println("Test " + test_num + " completed. Moving on to test " + ++test_num);
     }
 
     // Test methods (class test functions)
@@ -44,8 +44,8 @@ public class RedditLogin {
     void testRD_1_01() throws InterruptedException {
         // test case ID: RD_1_01 --> Verify login page is working
         // ---------------------------------------------------------------------------------
-        // opening reddit and hit the login button
         try {
+            // clicking login button
             chromeDriver.findElement(By.id("login-button")).click();
         } catch (Exception e){
             //just here to assert test passed
@@ -60,8 +60,10 @@ public class RedditLogin {
     void testRD_1_02() throws InterruptedException {
         // test case ID: RD_1_02 --> Verify that username text box is working
         // ---------------------------------------------------------------------------------
-        // select the username box and enter the username
         try {
+            // clicking login button
+            chromeDriver.findElement(By.id("login-button")).click();
+            // entering username
             chromeDriver.findElement(By.id("login-username")).sendKeys("CENTestUser");
         } catch (Exception e){
             //just here to assert test passed
@@ -76,8 +78,10 @@ public class RedditLogin {
     void testRD_1_03() throws InterruptedException {
         // test case ID: RD_1_03 --> Verify that password text box is working
         // ---------------------------------------------------------------------------------
-        // using the already open window, select the password box and enter the password
         try {
+            // clicking login button
+            chromeDriver.findElement(By.id("login-button")).click();
+            // entering valid password
             chromeDriver.findElement(By.id("login-password")).sendKeys("CENTestPass");
         } catch (Exception e){
             //just here to assert test passed
@@ -90,12 +94,24 @@ public class RedditLogin {
 
     @Test (priority = 1)
     void testRD_1_04() throws InterruptedException {
-        // test case ID: RD_1_05 --> Verify that login won't work if given incorrect username
+        // test case ID: RD_1_04 --> Verify user can be logged in
         // ---------------------------------------------------------------------------------
-
         try {
-            chromeDriver.findElement(By.id("login-username")).sendKeys("badUsername");
+            // clicking login button
+            chromeDriver.findElement(By.id("login-button")).click();
+            Thread.sleep(2000);
+
+
+            // enter valid username and password
+            chromeDriver.findElement(By.id("login-username")).sendKeys("CENTestUser");
+            chromeDriver.findElement(By.id("login-password")).sendKeys("CENTestPass");
+            Thread.sleep(2000);
+
             // login button click
+            // ++++++++++++++ help pls!!!!
+            // chromeDriver.findElement(By.xpath("//*[@source='onboarding' and @action='click']")).click();
+            // ++++++++++++++
+
         } catch (Exception e){
             //just here to assert test passed
             Assert.assertEquals(0,1);
@@ -107,18 +123,53 @@ public class RedditLogin {
 
     @Test (priority = 1)
     void testRD_1_05() throws InterruptedException {
-        // test case ID: RD_1_06 --> Verify that login won't work if given incorrect password
+        // test case ID: RD_1_05 --> Verify that login won't work if given incorrect username
         // ---------------------------------------------------------------------------------
 
         try {
-            chromeDriver.findElement(By.id("login-password")).sendKeys("badPassword");
+            // clicking login button
+            chromeDriver.findElement(By.id("login-button")).click();
+
+            // enter invalid username and valid password
+            chromeDriver.findElement(By.id("login-username")).sendKeys("badUsername");
+            chromeDriver.findElement(By.id("login-password")).sendKeys("CENTestPass");
+
             // login button click
+
         } catch (Exception e){
             //just here to assert test passed
             Assert.assertEquals(0,1);
         } finally {
             Assert.assertEquals(1,1);
             Thread.sleep(2000);
+        }
+    }
+
+    @Test (priority = 1)
+    void testRD_1_06() throws InterruptedException {
+        // test case ID: RD_1_06 --> Verify that login won't work if given incorrect password
+        // ---------------------------------------------------------------------------------
+
+        try {
+            // clicking login button
+            chromeDriver.findElement(By.id("login-button")).click();
+            Thread.sleep(2000);
+
+            // enter valid username and invalid password
+            chromeDriver.findElement(By.id("login-username")).sendKeys("CENTestUser");
+            chromeDriver.findElement(By.id("login-password")).sendKeys("badPassword");
+            Thread.sleep(2000);
+
+            // click login button
+            chromeDriver.findElement(By.xpath("@src='onboarding'")).click();
+
+        } catch (Exception e){
+            //just here to assert test passed
+            Assert.assertEquals(0,1);
+        } finally {
+            Assert.assertEquals(1,1);
+            Thread.sleep(2000);
+
         }
     }
 
