@@ -21,10 +21,27 @@ public class RedditProfilePage {
     //------------------------------------------------------------------------------------------------------------------
     @BeforeClass
     void prepPage() throws InterruptedException {
-        chromeDriver.get("https://www.reddit.com/");
+        //reload page
+        chromeDriver.get("https://www.reddit.com/login/");
         chromeDriver.manage().window().maximize();
-        //wait for manual login
-        Thread.sleep(6000);
+        Thread.sleep(2000);
+
+        // enter valid username and password
+        chromeDriver.findElement(By.id("login-username")).sendKeys("CENTestingUser");
+        chromeDriver.findElement(By.id("login-password")).sendKeys("CENTestingPass");
+        Thread.sleep(1000);
+
+        // login button click
+        // ++++++++++++++
+        chromeDriver.findElement(By.xpath("/html/body/shreddit-app/shreddit-overlay-display"))
+                .getShadowRoot()
+                .findElement(By.cssSelector("shreddit-signup-drawer"))
+                .getShadowRoot()
+                .findElement(By.cssSelector("shreddit-drawer > div > shreddit-async-loader > div > shreddit-slotter"))
+                .getShadowRoot()
+                .findElement(By.cssSelector("#login > faceplate-tabpanel > auth-flow-modal:nth-child(1) > div.w-100 > faceplate-tracker > button")).click();
+        // ++++++++++++++
+        Thread.sleep(2000);
     }
     @AfterClass
     void afterTests() {
@@ -39,7 +56,7 @@ public class RedditProfilePage {
         // ---------------------------------------------------------------------------------
         try {
             // opening reddit
-            chromeDriver.get("https://www.reddit.com/");
+            chromeDriver.get("https://www.reddit.com/user/CENTestingUser/");
             chromeDriver.manage().window().maximize();
         } catch (Exception e){
             //just here to assert test not passed
@@ -55,7 +72,7 @@ public class RedditProfilePage {
         // test case ID: RD_6_02 --> Verify "Posts" button is working
         // ---------------------------------------------------------------------------------
         try {
-            chromeDriver.findElement(By.partialLinkText("Home")).click();
+            chromeDriver.findElement(By.xpath("//*[@id=\"profile-feed-tabgroup\"]/a[2]")).click();
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -70,7 +87,7 @@ public class RedditProfilePage {
         // test case ID: RD_6_03 --> Verify "Comments" button is working
         // ---------------------------------------------------------------------------------
         try {
-            chromeDriver.findElement(By.partialLinkText("Popular")).click();
+            chromeDriver.findElement(By.xpath("//*[@id=\"profile-feed-tabgroup\"]/a[3]")).click();
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -82,10 +99,10 @@ public class RedditProfilePage {
 
     @Test (priority = 1)
     void testRD_6_04() throws InterruptedException {
-        // test case ID: RD_6_04 --> Verify "Overview" button is working
+        // test case ID: RD_6_04 --> Verify "Saved" button is working
         // ---------------------------------------------------------------------------------
         try {
-            chromeDriver.findElement(By.id("expand-user-drawer-button")).click();
+            chromeDriver.findElement(By.xpath("//*[@id=\"profile-feed-tabgroup\"]/a[4]")).click();
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -97,14 +114,10 @@ public class RedditProfilePage {
 
     @Test (priority = 1)
     void testRD_6_05() throws InterruptedException {
-        // test case ID: RD_6_05 --> Verify "Follow" button is working
+        // test case ID: RD_6_05 --> Verify "Hidden" button is working
         // ---------------------------------------------------------------------------------
         try {
-            // setting trending filter to 'New'
-
-            // setting location filter to 'Australia'
-
-            // setting format filter to 'compact'
+            chromeDriver.findElement(By.xpath("//*[@id=\"profile-feed-tabgroup\"]/a[5]")).click();
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -116,10 +129,10 @@ public class RedditProfilePage {
 
     @Test (priority = 1)
     void testRD_6_06() throws InterruptedException {
-        // test case ID: RD_6_06 --> Verify chat bubble is working
+        // test case ID: RD_6_06 --> Verify "Upvoted" button is working
         // ---------------------------------------------------------------------------------
         try {
-
+            chromeDriver.findElement(By.xpath("//*[@id=\"profile-feed-tabgroup\"]/a[6]")).click();
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -130,10 +143,10 @@ public class RedditProfilePage {
     }
     @Test (priority = 1)
     void testRD_7_06() throws InterruptedException {
-        // test case ID: RD_6_07 --> Verify "Block Account" is working
+        // test case ID: RD_6_07 --> Verify "Downvoted" button is working
         // ---------------------------------------------------------------------------------
         try {
-
+            chromeDriver.findElement(By.xpath("//*[@id=\"profile-feed-tabgroup\"]/a[7]")).click();
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
