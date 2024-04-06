@@ -12,7 +12,7 @@ import org.testng.annotations.*;
 //import java.util.Set;
 //import java.util.ArrayList;
 
-public class RedditHomePage {
+public class RedditPopularPage {
     //fields (class variables)
     //------------------------------------------------------------------------------------------------------------------
     WebDriver chromeDriver = new ChromeDriver();
@@ -20,9 +20,11 @@ public class RedditHomePage {
     //before/after methods
     //------------------------------------------------------------------------------------------------------------------
     @BeforeClass
-    void prepPage() {
+    void prepPage() throws InterruptedException {
         chromeDriver.get("https://www.reddit.com/");
         chromeDriver.manage().window().maximize();
+        //wait for manual login
+        Thread.sleep(6000);
     }
     @AfterClass
     void afterTests() {
@@ -32,8 +34,8 @@ public class RedditHomePage {
     // Test methods (class test functions)
     //------------------------------------------------------------------------------------------------------------------
     @Test (priority = 1)
-    void testRD_2_01() throws InterruptedException {
-        // test case ID: RD_2_01 --> Verify home page is working
+    void testRD_8_01() throws InterruptedException {
+        // test case ID: RD_8_01 --> Verify Popular page is working
         // ---------------------------------------------------------------------------------
         try {
             // opening reddit
@@ -49,10 +51,9 @@ public class RedditHomePage {
     }
 
     @Test (priority = 1)
-    void testRD_2_02() throws InterruptedException {
-        // test case ID: RD_2_02 --> Verify that home button is working
+    void testRD_8_02() throws InterruptedException {
+        // test case ID: RD_8_02 --> Verify sort by country functionality
         // ---------------------------------------------------------------------------------
-        // pressing home button in the already open browser
         try {
             chromeDriver.findElement(By.partialLinkText("Home")).click();
         } catch (Exception e){
@@ -65,10 +66,9 @@ public class RedditHomePage {
     }
 
     @Test (priority = 1)
-    void testRD_2_03() throws InterruptedException {
-        // test case ID: RD_2_03 --> Verify popular button is working
+    void testRD_8_03() throws InterruptedException {
+        // test case ID: RD_8_03 --> Verify sort by state functionality
         // ---------------------------------------------------------------------------------
-        // pressing popular button in the already open browser
         try {
             chromeDriver.findElement(By.partialLinkText("Popular")).click();
         } catch (Exception e){
@@ -81,8 +81,8 @@ public class RedditHomePage {
     }
 
     @Test (priority = 1)
-    void testRD_2_04() throws InterruptedException {
-        // test case ID: RD_2_04 --> Verify settings menu works
+    void testRD_8_04() throws InterruptedException {
+        // test case ID: RD_8_04 --> Verify other sort options
         // ---------------------------------------------------------------------------------
         try {
             chromeDriver.findElement(By.id("expand-user-drawer-button")).click();
@@ -96,8 +96,8 @@ public class RedditHomePage {
     }
 
     @Test (priority = 1)
-    void testRD_2_05() throws InterruptedException {
-        // test case ID: RD_2_05 --> Verify the different post filters are working
+    void testRD_8_05() throws InterruptedException {
+        // test case ID: RD_8_05 --> Verify "Advertise on Reddit" link works
         // ---------------------------------------------------------------------------------
         try {
             // setting trending filter to 'New'
@@ -115,23 +115,8 @@ public class RedditHomePage {
     }
 
     @Test (priority = 1)
-    void testRD_2_06() throws InterruptedException {
-        // test case ID: RD_2_06 --> Verify search bar works
-        // ---------------------------------------------------------------------------------
-        try {
-
-        } catch (Exception e){
-            //just here to assert test not passed
-            Assert.assertEquals(0,1);
-        } finally {
-            Assert.assertEquals(1,1);
-            Thread.sleep(2000);
-        }
-    }
-
-    @Test (priority = 1)
-    void testRD_2_07() throws InterruptedException {
-        // test case ID: RD_2_07 --> Verify navigation bar dropdowns are working
+    void testRD_8_06() throws InterruptedException {
+        // test case ID: RD_8_06 --> Verify banner arrow functionality
         // ---------------------------------------------------------------------------------
         try {
 

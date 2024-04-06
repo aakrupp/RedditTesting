@@ -12,7 +12,7 @@ import org.testng.annotations.*;
 //import java.util.Set;
 //import java.util.ArrayList;
 
-public class RedditHomePage {
+public class RedditChatPage {
     //fields (class variables)
     //------------------------------------------------------------------------------------------------------------------
     WebDriver chromeDriver = new ChromeDriver();
@@ -20,9 +20,11 @@ public class RedditHomePage {
     //before/after methods
     //------------------------------------------------------------------------------------------------------------------
     @BeforeClass
-    void prepPage() {
+    void prepPage() throws InterruptedException {
         chromeDriver.get("https://www.reddit.com/");
         chromeDriver.manage().window().maximize();
+        //wait for manual login
+        Thread.sleep(10000);
     }
     @AfterClass
     void afterTests() {
@@ -32,13 +34,12 @@ public class RedditHomePage {
     // Test methods (class test functions)
     //------------------------------------------------------------------------------------------------------------------
     @Test (priority = 1)
-    void testRD_2_01() throws InterruptedException {
-        // test case ID: RD_2_01 --> Verify home page is working
+    void testRD_5_01() throws InterruptedException {
+        // test case ID: RD_5_01 --> Verify chat page is working
         // ---------------------------------------------------------------------------------
         try {
             // opening reddit
-            chromeDriver.get("https://www.reddit.com/");
-            chromeDriver.manage().window().maximize();
+            chromeDriver.get("https://chat.reddit.com/");
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -49,12 +50,11 @@ public class RedditHomePage {
     }
 
     @Test (priority = 1)
-    void testRD_2_02() throws InterruptedException {
-        // test case ID: RD_2_02 --> Verify that home button is working
+    void testRD_5_02() throws InterruptedException {
+        // test case ID: RD_5_02 --> Verify "Threads" button is working
         // ---------------------------------------------------------------------------------
-        // pressing home button in the already open browser
         try {
-            chromeDriver.findElement(By.partialLinkText("Home")).click();
+            chromeDriver.get("https://chat.reddit.com/threads");
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -65,12 +65,12 @@ public class RedditHomePage {
     }
 
     @Test (priority = 1)
-    void testRD_2_03() throws InterruptedException {
-        // test case ID: RD_2_03 --> Verify popular button is working
+    void testRD_5_03() throws InterruptedException {
+        // test case ID: RD_5_03 --> Verify "Discover Channels" button is working
         // ---------------------------------------------------------------------------------
-        // pressing popular button in the already open browser
         try {
-            chromeDriver.findElement(By.partialLinkText("Popular")).click();
+            chromeDriver.get("https://chat.reddit.com/");
+            // no such button exists
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -81,11 +81,11 @@ public class RedditHomePage {
     }
 
     @Test (priority = 1)
-    void testRD_2_04() throws InterruptedException {
-        // test case ID: RD_2_04 --> Verify settings menu works
+    void testRD_5_04() throws InterruptedException {
+        // test case ID: RD_5_04 --> Verify Start a new chat bubble is working
         // ---------------------------------------------------------------------------------
         try {
-            chromeDriver.findElement(By.id("expand-user-drawer-button")).click();
+            chromeDriver.get("https://chat.reddit.com/room/create");
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -96,15 +96,18 @@ public class RedditHomePage {
     }
 
     @Test (priority = 1)
-    void testRD_2_05() throws InterruptedException {
-        // test case ID: RD_2_05 --> Verify the different post filters are working
+    void testRD_5_05() throws InterruptedException {
+        // test case ID: RD_5_05 --> Verify Chat options dropdown is working
         // ---------------------------------------------------------------------------------
         try {
-            // setting trending filter to 'New'
-
-            // setting location filter to 'Australia'
-
-            // setting format filter to 'compact'
+            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app//div[2]/rs-rooms-nav//div[1]/rs-rooms-nav-filter")).click();
+            Thread.sleep(1000);
+            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app//div[2]/rs-rooms-nav//div[1]/rs-rooms-nav-filter//faceplate-dropdown-menu/faceplate-menu/li[1]")).click();
+            Thread.sleep(1000);
+            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app//div[2]/rs-rooms-nav//div[1]/rs-rooms-nav-filter//faceplate-dropdown-menu/faceplate-menu/li[2]")).click();
+            Thread.sleep(1000);
+            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app//div[2]/rs-rooms-nav//div[1]/rs-rooms-nav-filter//faceplate-dropdown-menu/faceplate-menu/li[3]")).click();
+            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app//div[2]/rs-rooms-nav//div[1]/rs-rooms-nav-filter//faceplate-dropdown-menu/faceplate-menu/div/button")).click();
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -115,23 +118,8 @@ public class RedditHomePage {
     }
 
     @Test (priority = 1)
-    void testRD_2_06() throws InterruptedException {
-        // test case ID: RD_2_06 --> Verify search bar works
-        // ---------------------------------------------------------------------------------
-        try {
-
-        } catch (Exception e){
-            //just here to assert test not passed
-            Assert.assertEquals(0,1);
-        } finally {
-            Assert.assertEquals(1,1);
-            Thread.sleep(2000);
-        }
-    }
-
-    @Test (priority = 1)
-    void testRD_2_07() throws InterruptedException {
-        // test case ID: RD_2_07 --> Verify navigation bar dropdowns are working
+    void testRD_5_06() throws InterruptedException {
+        // test case ID: RD_5_06 --> Verify "Go to messages" button is working
         // ---------------------------------------------------------------------------------
         try {
 
