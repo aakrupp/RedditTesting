@@ -142,7 +142,7 @@ public class RedditProfilePage {
         }
     }
     @Test (priority = 1)
-    void testRD_7_06() throws InterruptedException {
+    void testRD_6_07() throws InterruptedException {
         // test case ID: RD_6_07 --> Verify "Downvoted" button is working
         // ---------------------------------------------------------------------------------
         try {
