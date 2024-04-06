@@ -21,10 +21,27 @@ public class RedditChatPage {
     //------------------------------------------------------------------------------------------------------------------
     @BeforeClass
     void prepPage() throws InterruptedException {
-        chromeDriver.get("https://www.reddit.com/");
+        //reload page
+        chromeDriver.get("https://www.reddit.com/login/");
         chromeDriver.manage().window().maximize();
-        //wait for manual login
-        Thread.sleep(10000);
+        Thread.sleep(2000);
+
+        // enter valid username and password
+        chromeDriver.findElement(By.id("login-username")).sendKeys("CENTestingUser");
+        chromeDriver.findElement(By.id("login-password")).sendKeys("CENTestingPass");
+        Thread.sleep(1000);
+
+        // login button click
+        // ++++++++++++++
+        chromeDriver.findElement(By.xpath("/html/body/shreddit-app/shreddit-overlay-display"))
+                .getShadowRoot()
+                .findElement(By.cssSelector("shreddit-signup-drawer"))
+                .getShadowRoot()
+                .findElement(By.cssSelector("shreddit-drawer > div > shreddit-async-loader > div > shreddit-slotter"))
+                .getShadowRoot()
+                .findElement(By.cssSelector("#login > faceplate-tabpanel > auth-flow-modal:nth-child(1) > div.w-100 > faceplate-tracker > button")).click();
+        // ++++++++++++++
+        Thread.sleep(2000);
     }
     @AfterClass
     void afterTests() {
@@ -54,7 +71,11 @@ public class RedditChatPage {
         // test case ID: RD_5_02 --> Verify "Threads" button is working
         // ---------------------------------------------------------------------------------
         try {
-            chromeDriver.get("https://chat.reddit.com/threads");
+            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.container > rs-rooms-nav"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.border-solid.border-0.border-b.border-b-tone-5 > div > li > div")).click();
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -85,7 +106,11 @@ public class RedditChatPage {
         // test case ID: RD_5_04 --> Verify Start a new chat bubble is working
         // ---------------------------------------------------------------------------------
         try {
-            chromeDriver.get("https://chat.reddit.com/room/create");
+            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.container > rs-rooms-nav"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.flex.items-center.px-md.py-sm > a")).click();
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -100,14 +125,57 @@ public class RedditChatPage {
         // test case ID: RD_5_05 --> Verify Chat options dropdown is working
         // ---------------------------------------------------------------------------------
         try {
-            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app//div[2]/rs-rooms-nav//div[1]/rs-rooms-nav-filter")).click();
+            //click dropdown
+            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.container > rs-rooms-nav"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.flex.items-center.px-md.py-sm > rs-rooms-nav-filter"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("faceplate-dropdown-menu > button")).click();
             Thread.sleep(1000);
-            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app//div[2]/rs-rooms-nav//div[1]/rs-rooms-nav-filter//faceplate-dropdown-menu/faceplate-menu/li[1]")).click();
+            //click checkbox 1
+            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.container > rs-rooms-nav"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.flex.items-center.px-md.py-sm > rs-rooms-nav-filter"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("faceplate-dropdown-menu > faceplate-menu > li:nth-child(1) > div")).click();
             Thread.sleep(1000);
-            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app//div[2]/rs-rooms-nav//div[1]/rs-rooms-nav-filter//faceplate-dropdown-menu/faceplate-menu/li[2]")).click();
+            //click checkbox 2
+            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.container > rs-rooms-nav"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.flex.items-center.px-md.py-sm > rs-rooms-nav-filter"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("faceplate-dropdown-menu > faceplate-menu > li:nth-child(2) > div")).click();
             Thread.sleep(1000);
-            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app//div[2]/rs-rooms-nav//div[1]/rs-rooms-nav-filter//faceplate-dropdown-menu/faceplate-menu/li[3]")).click();
-            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app//div[2]/rs-rooms-nav//div[1]/rs-rooms-nav-filter//faceplate-dropdown-menu/faceplate-menu/div/button")).click();
+            //click checkbox 3 twice
+            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.container > rs-rooms-nav"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.flex.items-center.px-md.py-sm > rs-rooms-nav-filter"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("faceplate-dropdown-menu > faceplate-menu > li:nth-child(3) > div")).click();
+            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.container > rs-rooms-nav"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.flex.items-center.px-md.py-sm > rs-rooms-nav-filter"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("faceplate-dropdown-menu > faceplate-menu > li:nth-child(3) > div")).click();
+            //click apply
+            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.container > rs-rooms-nav"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.flex.items-center.px-md.py-sm > rs-rooms-nav-filter"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("faceplate-dropdown-menu > faceplate-menu > div > button")).click();
+            Thread.sleep(2000);
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -122,7 +190,13 @@ public class RedditChatPage {
         // test case ID: RD_5_06 --> Verify "Go to messages" button is working
         // ---------------------------------------------------------------------------------
         try {
-
+            chromeDriver.get("https://chat.reddit.com/threads");
+            Thread.sleep(2000);
+            chromeDriver.findElement(By.xpath("/html/body/faceplate-app/rs-app"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("div.container > rs-threads-view"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("rs-room-overlay-manager > div > button")).click();
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);

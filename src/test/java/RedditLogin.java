@@ -97,7 +97,7 @@ public class RedditLogin {
             Thread.sleep(1000);
 
             // login button click
-            // ++++++++++++++ help pls!!!!
+            // ++++++++++++++
             chromeDriver.findElement(By.xpath("/html/body/shreddit-app/shreddit-overlay-display"))
                     .getShadowRoot()
                     .findElement(By.cssSelector("shreddit-signup-drawer"))
