@@ -92,9 +92,9 @@ public class RedditLogin {
             Thread.sleep(2000);
 
             // enter valid username and password
-            chromeDriver.findElement(By.id("login-username")).sendKeys("CENTestUser");
+            chromeDriver.findElement(By.id("login-username")).sendKeys("CENTestingUser");
             chromeDriver.findElement(By.id("login-password")).sendKeys("CENTestingPass");
-            Thread.sleep(2000);
+            Thread.sleep(1000);
 
             // login button click
             // ++++++++++++++ help pls!!!!
