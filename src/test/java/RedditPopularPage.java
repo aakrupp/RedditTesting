@@ -16,6 +16,7 @@ public class RedditPopularPage {
     //fields (class variables)
     //------------------------------------------------------------------------------------------------------------------
     WebDriver chromeDriver = new ChromeDriver();
+    // RedditCreatePostPage
 
     //before/after methods
     //------------------------------------------------------------------------------------------------------------------

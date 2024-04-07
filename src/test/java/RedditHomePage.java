@@ -46,7 +46,7 @@ public class RedditHomePage {
 
     @AfterClass
     void afterTests() {
-        // chromeDriver.quit();
+        chromeDriver.quit();
     }
 
     // Test methods (class test functions)
