@@ -20,9 +20,28 @@ public class RedditHomePage {
     //before/after methods
     //------------------------------------------------------------------------------------------------------------------
     @BeforeClass
-    void prepPage() {
-        chromeDriver.get("https://www.reddit.com/");
+    void prepPage() throws InterruptedException {
+        //reload page
+        chromeDriver.get("https://www.reddit.com/login/");
         chromeDriver.manage().window().maximize();
+        Thread.sleep(2000);
+
+        // enter valid username and password
+        chromeDriver.findElement(By.id("login-username")).sendKeys("CENTestingUser");
+        chromeDriver.findElement(By.id("login-password")).sendKeys("CENTestingPass");
+        Thread.sleep(1000);
+
+        // login button click
+        // ++++++++++++++
+        chromeDriver.findElement(By.xpath("/html/body/shreddit-app/shreddit-overlay-display"))
+                .getShadowRoot()
+                .findElement(By.cssSelector("shreddit-signup-drawer"))
+                .getShadowRoot()
+                .findElement(By.cssSelector("shreddit-drawer > div > shreddit-async-loader > div > shreddit-slotter"))
+                .getShadowRoot()
+                .findElement(By.cssSelector("#login > faceplate-tabpanel > auth-flow-modal:nth-child(1) > div.w-100 > faceplate-tracker > button")).click();
+        // ++++++++++++++
+        Thread.sleep(2000);
     }
     @AfterClass
     void afterTests() {

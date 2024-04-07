@@ -131,6 +131,15 @@ public class RedditLogin {
             chromeDriver.findElement(By.id("login-password")).sendKeys("CENTestPass");
 
             // login button click
+            // ++++++++++++++
+            chromeDriver.findElement(By.xpath("/html/body/shreddit-app/shreddit-overlay-display"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("shreddit-signup-drawer"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("shreddit-drawer > div > shreddit-async-loader > div > shreddit-slotter"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("#login > faceplate-tabpanel > auth-flow-modal:nth-child(1) > div.w-100 > faceplate-tracker > button")).click();
+            // ++++++++++++++
 
         } catch (Exception e){
             //just here to assert test not passed
@@ -156,8 +165,16 @@ public class RedditLogin {
             chromeDriver.findElement(By.id("login-password")).sendKeys("badPassword");
             Thread.sleep(2000);
 
-            // click login button
-            chromeDriver.findElement(By.xpath("@src='onboarding'")).click();
+            // login button click
+            // ++++++++++++++
+            chromeDriver.findElement(By.xpath("/html/body/shreddit-app/shreddit-overlay-display"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("shreddit-signup-drawer"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("shreddit-drawer > div > shreddit-async-loader > div > shreddit-slotter"))
+                    .getShadowRoot()
+                    .findElement(By.cssSelector("#login > faceplate-tabpanel > auth-flow-modal:nth-child(1) > div.w-100 > faceplate-tracker > button")).click();
+            // ++++++++++++++
 
         } catch (Exception e){
             //just here to assert test not passed
