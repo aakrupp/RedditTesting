@@ -45,7 +45,7 @@ public class RedditHomePage {
     }
     @AfterClass
     void afterTests() {
-        chromeDriver.quit();
+        // chromeDriver.quit();
     }
 
     // Test methods (class test functions)
@@ -58,6 +58,7 @@ public class RedditHomePage {
             // opening reddit
             chromeDriver.get("https://www.reddit.com/");
             chromeDriver.manage().window().maximize();
+
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -69,11 +70,17 @@ public class RedditHomePage {
 
     @Test (priority = 1)
     void testRD_2_02() throws InterruptedException {
-        // test case ID: RD_2_02 --> Verify that home button is working
+        // test case ID: RD_2_02 --> Verify profile menu works
         // ---------------------------------------------------------------------------------
-        // pressing home button in the already open browser
         try {
-            chromeDriver.findElement(By.partialLinkText("Home")).click();
+            // opening reddit
+            chromeDriver.get("https://www.reddit.com/");
+            chromeDriver.manage().window().maximize();
+
+            // click on profile menu button
+            chromeDriver.findElement(By.id("expand-user-drawer-button")).click();
+
+
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -85,40 +92,13 @@ public class RedditHomePage {
 
     @Test (priority = 1)
     void testRD_2_03() throws InterruptedException {
-        // test case ID: RD_2_03 --> Verify popular button is working
+        // test case ID: RD_2_03 --> Verify the different post filters are working
         // ---------------------------------------------------------------------------------
-        // pressing popular button in the already open browser
         try {
-            chromeDriver.findElement(By.partialLinkText("Popular")).click();
-        } catch (Exception e){
-            //just here to assert test not passed
-            Assert.assertEquals(0,1);
-        } finally {
-            Assert.assertEquals(1,1);
-            Thread.sleep(2000);
-        }
-    }
+            // opening reddit
+            chromeDriver.get("https://www.reddit.com/");
+            chromeDriver.manage().window().maximize();
 
-    @Test (priority = 1)
-    void testRD_2_04() throws InterruptedException {
-        // test case ID: RD_2_04 --> Verify settings menu works
-        // ---------------------------------------------------------------------------------
-        try {
-            chromeDriver.findElement(By.id("expand-user-drawer-button")).click();
-        } catch (Exception e){
-            //just here to assert test not passed
-            Assert.assertEquals(0,1);
-        } finally {
-            Assert.assertEquals(1,1);
-            Thread.sleep(2000);
-        }
-    }
-
-    @Test (priority = 1)
-    void testRD_2_05() throws InterruptedException {
-        // test case ID: RD_2_05 --> Verify the different post filters are working
-        // ---------------------------------------------------------------------------------
-        try {
             // setting trending filter to 'New'
 
             // setting location filter to 'Australia'
@@ -134,8 +114,8 @@ public class RedditHomePage {
     }
 
     @Test (priority = 1)
-    void testRD_2_06() throws InterruptedException {
-        // test case ID: RD_2_06 --> Verify search bar works
+    void testRD_2_04() throws InterruptedException {
+        // test case ID: RD_2_04 --> Verify search bar works
         // ---------------------------------------------------------------------------------
         try {
 
@@ -149,8 +129,8 @@ public class RedditHomePage {
     }
 
     @Test (priority = 1)
-    void testRD_2_07() throws InterruptedException {
-        // test case ID: RD_2_07 --> Verify navigation bar dropdowns are working
+    void testRD_2_05() throws InterruptedException {
+        // test case ID: RD_2_05 --> Verify navigation bar dropdowns are working
         // ---------------------------------------------------------------------------------
         try {
 
