@@ -43,6 +43,7 @@ public class RedditHomePage {
         // ++++++++++++++
         Thread.sleep(2000);
     }
+
     @AfterClass
     void afterTests() {
         // chromeDriver.quit();
@@ -50,7 +51,7 @@ public class RedditHomePage {
 
     // Test methods (class test functions)
     //------------------------------------------------------------------------------------------------------------------
-    @Test (priority = 1)
+    @Test(priority = 1)
     void testRD_2_01() throws InterruptedException {
         // test case ID: RD_2_01 --> Verify home page is working
         // ---------------------------------------------------------------------------------
@@ -59,16 +60,16 @@ public class RedditHomePage {
             chromeDriver.get("https://www.reddit.com/");
             chromeDriver.manage().window().maximize();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             //just here to assert test not passed
-            Assert.assertEquals(0,1);
+            Assert.assertEquals(0, 1);
         } finally {
-            Assert.assertEquals(1,1);
+            Assert.assertEquals(1, 1);
             Thread.sleep(3000);
         }
     }
 
-    @Test (priority = 1)
+    @Test(priority = 1)
     void testRD_2_02() throws InterruptedException {
         // test case ID: RD_2_02 --> Verify profile menu works
         // ---------------------------------------------------------------------------------
@@ -80,65 +81,77 @@ public class RedditHomePage {
             // click on profile menu button
             chromeDriver.findElement(By.id("expand-user-drawer-button")).click();
 
-
-        } catch (Exception e){
+        } catch (Exception e) {
             //just here to assert test not passed
-            Assert.assertEquals(0,1);
+            Assert.assertEquals(0, 1);
         } finally {
-            Assert.assertEquals(1,1);
+            Assert.assertEquals(1, 1);
             Thread.sleep(2000);
         }
     }
 
-    @Test (priority = 1)
+    @Test(priority = 1)
     void testRD_2_03() throws InterruptedException {
-        // test case ID: RD_2_03 --> Verify the different post filters are working
+        // test case ID: RD_2_03 --> Verify chat button works
         // ---------------------------------------------------------------------------------
         try {
             // opening reddit
             chromeDriver.get("https://www.reddit.com/");
             chromeDriver.manage().window().maximize();
 
-            // setting trending filter to 'New'
+            // click chat button
+            chromeDriver.findElement(By.id("header-action-item-chat-button")).click();
 
-            // setting location filter to 'Australia'
-
-            // setting format filter to 'compact'
-        } catch (Exception e){
+        } catch (Exception e) {
             //just here to assert test not passed
-            Assert.assertEquals(0,1);
+            Assert.assertEquals(0, 1);
         } finally {
-            Assert.assertEquals(1,1);
+            Assert.assertEquals(1, 1);
             Thread.sleep(2000);
         }
     }
 
-    @Test (priority = 1)
+    @Test(priority = 1)
     void testRD_2_04() throws InterruptedException {
-        // test case ID: RD_2_04 --> Verify search bar works
+        // test case ID: RD_2_04 --> Verify navigation bar dropdowns are working
         // ---------------------------------------------------------------------------------
         try {
+            // opening reddit
+            chromeDriver.get("https://www.reddit.com/");
+            chromeDriver.manage().window().maximize();
+            Thread.sleep(10000);
 
-        } catch (Exception e){
+            // click 'Resources' dropdown
+            chromeDriver.findElement(By.xpath("//*[@noun='resources_menu']")).click();
+            // content_policy_menu
+
+        } catch (Exception e) {
             //just here to assert test not passed
-            Assert.assertEquals(0,1);
+            Assert.assertEquals(0, 1);
         } finally {
-            Assert.assertEquals(1,1);
+            Assert.assertEquals(1, 1);
             Thread.sleep(2000);
         }
     }
 
-    @Test (priority = 1)
+    @Test(priority = 1)
     void testRD_2_05() throws InterruptedException {
-        // test case ID: RD_2_05 --> Verify navigation bar dropdowns are working
+        // test case ID: RD_2_05 --> Verify bottom links are working
         // ---------------------------------------------------------------------------------
         try {
+            // opening reddit
+            chromeDriver.get("https://www.reddit.com/");
+            chromeDriver.manage().window().maximize();
+            Thread.sleep(2000);
 
-        } catch (Exception e){
+            // click 'Resources' dropdown
+            chromeDriver.findElement(By.xpath("//*[@noun='content_policy_menu']")).click();
+
+        } catch (Exception e) {
             //just here to assert test not passed
-            Assert.assertEquals(0,1);
+            Assert.assertEquals(0, 1);
         } finally {
-            Assert.assertEquals(1,1);
+            Assert.assertEquals(1, 1);
             Thread.sleep(2000);
         }
     }
