@@ -74,12 +74,11 @@ public class RedditHomePage {
         // test case ID: RD_2_02 --> Verify profile menu works
         // ---------------------------------------------------------------------------------
         try {
-            // opening reddit
-            chromeDriver.get("https://www.reddit.com/");
-            chromeDriver.manage().window().maximize();
-
-            // click on profile menu button
+            // click on profile menu button twice to open and close it
             chromeDriver.findElement(By.id("expand-user-drawer-button")).click();
+            Thread.sleep(2000);
+            chromeDriver.findElement(By.id("expand-user-drawer-button")).click();
+            Thread.sleep(2000);
 
         } catch (Exception e) {
             //just here to assert test not passed
@@ -95,12 +94,9 @@ public class RedditHomePage {
         // test case ID: RD_2_03 --> Verify chat button works
         // ---------------------------------------------------------------------------------
         try {
-            // opening reddit
-            chromeDriver.get("https://www.reddit.com/");
-            chromeDriver.manage().window().maximize();
-
-            // click chat button
+             // click chat button twice to open and close it
             chromeDriver.findElement(By.id("header-action-item-chat-button")).click();
+            Thread.sleep(2000);
 
         } catch (Exception e) {
             //just here to assert test not passed
@@ -116,14 +112,11 @@ public class RedditHomePage {
         // test case ID: RD_2_04 --> Verify navigation bar dropdowns are working
         // ---------------------------------------------------------------------------------
         try {
-            // opening reddit
-            chromeDriver.get("https://www.reddit.com/");
-            chromeDriver.manage().window().maximize();
-            Thread.sleep(10000);
-
-            // click 'Resources' dropdown
+            // click 'Resources' dropdown twice to open and close it
             chromeDriver.findElement(By.xpath("//*[@noun='resources_menu']")).click();
-            // content_policy_menu
+            Thread.sleep(2000);
+            chromeDriver.findElement(By.xpath("//*[@noun='resources_menu']")).click();
+            Thread.sleep(2000);
 
         } catch (Exception e) {
             //just here to assert test not passed
@@ -139,12 +132,7 @@ public class RedditHomePage {
         // test case ID: RD_2_05 --> Verify bottom links are working
         // ---------------------------------------------------------------------------------
         try {
-            // opening reddit
-            chromeDriver.get("https://www.reddit.com/");
-            chromeDriver.manage().window().maximize();
-            Thread.sleep(2000);
-
-            // click 'Resources' dropdown
+            // click 'Content Policy Menu' to open that page
             chromeDriver.findElement(By.xpath("//*[@noun='content_policy_menu']")).click();
 
         } catch (Exception e) {
