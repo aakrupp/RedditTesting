@@ -13,7 +13,7 @@ import org.testng.annotations.*;
 //import java.util.ArrayList;
 
 public class RedditLogin {
-    //fields (class variables)
+    // fields (class variables)
     //------------------------------------------------------------------------------------------------------------------
     WebDriver chromeDriver = new ChromeDriver();
 
@@ -52,11 +52,10 @@ public class RedditLogin {
         // test case ID: RD_1_02 --> Verify that username text box is working
         // ---------------------------------------------------------------------------------
         try {
-            //navigate to login exclusive page for the rest of tests
-            chromeDriver.get("https://www.reddit.com/login/");
-            Thread.sleep(2000);
-            // entering username
+            // clearing the text box before entering username
+            chromeDriver.findElement(By.id("login-username")).clear();
             chromeDriver.findElement(By.id("login-username")).sendKeys("CENTestUser");
+
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -71,8 +70,10 @@ public class RedditLogin {
         // test case ID: RD_1_03 --> Verify that password text box is working
         // ---------------------------------------------------------------------------------
         try {
-            // entering valid password
+            // clearing textbox before entering valid password
+            chromeDriver.findElement(By.id("login-password")).clear();
             chromeDriver.findElement(By.id("login-password")).sendKeys("CENTestPass");
+
         } catch (Exception e){
             //just here to assert test not passed
             Assert.assertEquals(0,1);
@@ -82,17 +83,18 @@ public class RedditLogin {
         }
     }
 
-    @Test (priority = 1)
+
+    @Test (priority = 2)
+    // making the priority 2 so that it can try the 'bad' usernames and passwords first
     void testRD_1_04() throws InterruptedException {
         // test case ID: RD_1_04 --> Verify user can be logged in
         // ---------------------------------------------------------------------------------
         try {
-            //reload page
-            chromeDriver.get("https://www.reddit.com/login/");
-            Thread.sleep(2000);
 
-            // enter valid username and password
+            // clearing textboxes before entering valid username and password
+            chromeDriver.findElement(By.id("login-username")).clear();
             chromeDriver.findElement(By.id("login-username")).sendKeys("CENTestingUser");
+            chromeDriver.findElement(By.id("login-password")).clear();
             chromeDriver.findElement(By.id("login-password")).sendKeys("CENTestingPass");
             Thread.sleep(1000);
 
@@ -123,11 +125,10 @@ public class RedditLogin {
         // ---------------------------------------------------------------------------------
 
         try {
-            // clicking login button
-            chromeDriver.findElement(By.id("login-button")).click();
-
-            // enter invalid username and valid password
+            // clearing textboxes before entering invalid username and valid password
+            chromeDriver.findElement(By.id("login-username")).clear();
             chromeDriver.findElement(By.id("login-username")).sendKeys("badUsername");
+            chromeDriver.findElement(By.id("login-password")).clear();
             chromeDriver.findElement(By.id("login-password")).sendKeys("CENTestPass");
 
             // login button click
@@ -156,12 +157,10 @@ public class RedditLogin {
         // ---------------------------------------------------------------------------------
 
         try {
-            // clicking login button
-            chromeDriver.findElement(By.id("login-button")).click();
-            Thread.sleep(2000);
-
-            // enter valid username and invalid password
+            // clearing textboxes before entering valid username and invalid password
+            chromeDriver.findElement(By.id("login-username")).clear();
             chromeDriver.findElement(By.id("login-username")).sendKeys("CENTestUser");
+            chromeDriver.findElement(By.id("login-password")).clear();
             chromeDriver.findElement(By.id("login-password")).sendKeys("badPassword");
             Thread.sleep(2000);
 
