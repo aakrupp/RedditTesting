@@ -73,12 +73,13 @@ public class RedditTopicsPage {
         // test case ID: RD_3_02 --> Verify that links below the topic are working
         // ---------------------------------------------------------------------------------
         try {
-            // opening reddit NFL topic page
-            chromeDriver.get("https://www.reddit.com/t/nfl/");
-            chromeDriver.manage().window().maximize();
-
             // click the "Professional football" link
             chromeDriver.findElement(By.linkText("Professional football")).click();
+            Thread.sleep(2000);
+
+            // going back to nfl page for next test case
+            chromeDriver.get("https://www.reddit.com/t/nfl/");
+            chromeDriver.manage().window().maximize();
 
         } catch (Exception e){
             //just here to assert test not passed
@@ -94,13 +95,13 @@ public class RedditTopicsPage {
         // test case ID: RD_3_03 --> Verify that links below the topic in the subtopic are working
         // ---------------------------------------------------------------------------------
         try {
-            // opening reddit NFL topic page
-            chromeDriver.get("https://www.reddit.com/t/professional_football/");
-            chromeDriver.manage().window().maximize();
-
             // click the "Professional sports" link
-            chromeDriver.findElement(By.linkText("Football")).click();
+            chromeDriver.findElement(By.linkText("Professional sports")).click();
+            Thread.sleep(2000);
 
+            // going back to nfl page for next test case
+            chromeDriver.get("https://www.reddit.com/t/nfl/");
+            chromeDriver.manage().window().maximize();
 
         } catch (Exception e){
             //just here to assert test not passed
@@ -116,12 +117,9 @@ public class RedditTopicsPage {
         // test case ID: RD_3_04 --> Verify that "Communities" button is working
         // ---------------------------------------------------------------------------------
         try {
-            // opening reddit NFL topic page
-            chromeDriver.get("https://www.reddit.com/t/nfl/");
-            chromeDriver.manage().window().maximize();
-
             // click the "Communities" button
             chromeDriver.findElement(By.xpath("//*[@noun='communities']")).click();
+            Thread.sleep(2000);
 
         } catch (Exception e){
             //just here to assert test not passed
@@ -137,12 +135,9 @@ public class RedditTopicsPage {
         // test case ID: RD_3_05 --> Verify that "Related Topics" button is working
         // ---------------------------------------------------------------------------------
         try {
-            // opening reddit NFL topic page
-            chromeDriver.get("https://www.reddit.com/t/nfl/");
-            chromeDriver.manage().window().maximize();
-
             // click the "Related Topics" button
             chromeDriver.findElement(By.xpath("//*[@noun='related_topics']")).click();
+            Thread.sleep(2000);
 
         } catch (Exception e){
             //just here to assert test not passed
