@@ -45,7 +45,6 @@ public class RedditCreatePostPage {
     }
     @AfterClass
     void afterTests() {
-
         chromeDriver.close();
     }
 
@@ -56,9 +55,10 @@ public class RedditCreatePostPage {
         // test case ID: RD_4_01 --> Verify create post page is working
         // ---------------------------------------------------------------------------------
         try {
-            // opening reddit
+            // opening reddit create post page
             chromeDriver.get("https://www.reddit.com/submit?type=TEXT");
             chromeDriver.manage().window().maximize();
+            Thread.sleep(3000);
 
         } catch (Exception e){
             //just here to assert test not passed
@@ -74,13 +74,9 @@ public class RedditCreatePostPage {
         // test case ID: RD_4_02 --> Verify that "select a community" dropdown is working
         // ---------------------------------------------------------------------------------
         try {
-            // opening reddit
-            chromeDriver.get("https://www.reddit.com/submit?type=TEXT");
-            chromeDriver.manage().window().maximize();
-            Thread.sleep(3000);
-
-            // click "Select a Community"
+            // click "Select a Community" dropdown
             chromeDriver.findElement(By.className("_3cWzf-usAKfGV1Ay7h2zM_")).click();
+            Thread.sleep(2000);
 
         } catch (Exception e){
             //just here to assert test not passed
@@ -93,16 +89,12 @@ public class RedditCreatePostPage {
 
     @Test (priority = 1)
     void testRD_4_03() throws InterruptedException {
-        // test case ID: RD_4_03 --> Verify that "Images & Video" button is working
+        // test case ID: RD_4_03 --> Verify that text box is working
         // ---------------------------------------------------------------------------------
         try {
-            // opening reddit
-            chromeDriver.get("https://www.reddit.com/submit?type=TEXT");
-            chromeDriver.manage().window().maximize();
-            Thread.sleep(3000);
-
-            // click body text box and enter text
-            chromeDriver.findElement(By.className("Z1w8VkpQ23E1Wdq_My3U4 ")).click();
+            // entering text into textbox
+            chromeDriver.findElement(By.xpath("//*[@role='textbox']")).sendKeys("Testing text");
+            Thread.sleep(2000);
 
         } catch (Exception e){
             //just here to assert test not passed
@@ -118,12 +110,9 @@ public class RedditCreatePostPage {
         // test case ID: RD_4_04 --> Verify that "Add Tags" button is working
         // ---------------------------------------------------------------------------------
         try {
-            // opening reddit
-            chromeDriver.get("https://www.reddit.com/submit?type=TEXT");
-            chromeDriver.manage().window().maximize();
-            Thread.sleep(3000);
-
-            chromeDriver.findElement(By.className("_5x1WjCc4HQF6tqnODOql0 _2iuoyPiKHN3kfOoeIQalDT _2tU8R9NTqhvBrhoNAXWWcP HNozj_dKjQZ59ZsfEegz8 ")).click();
+            // clicking the 'NSFW' button to add the tag to the post
+            chromeDriver.findElement(By.xpath("//*[@aria-label='Mark as Not Safe For Work']")).click();
+            Thread.sleep(2000);
 
         } catch (Exception e){
             //just here to assert test not passed
@@ -139,13 +128,9 @@ public class RedditCreatePostPage {
         // test case ID: RD_4_05 --> Verify that "Drafts" button is working
         // ---------------------------------------------------------------------------------
         try {
-            // opening reddit
-            chromeDriver.get("https://www.reddit.com/submit?type=TEXT");
-            chromeDriver.manage().window().maximize();
-            Thread.sleep(3000);
-
             // click the drafts button
-            chromeDriver.findElement(By.className("_3KQDVc4kBIwA5u7S9n99NQ _2iuoyPiKHN3kfOoeIQalDT _3zbhtNO0bdck0oYbYRhjMC HNozj_dKjQZ59ZsfEegz8 ")).click();
+            chromeDriver.findElement(By.className("_2qdAvPbBMsK4TpwNnVe-pj")).click();
+            Thread.sleep(2000);
 
         } catch (Exception e){
             //just here to assert test not passed
@@ -161,13 +146,9 @@ public class RedditCreatePostPage {
         // test case ID: RD_4_06 --> Verify that "Markdown Editor" button is working
         // ---------------------------------------------------------------------------------
         try {
-            // opening reddit
-            chromeDriver.get("https://www.reddit.com/submit?type=TEXT");
-            chromeDriver.manage().window().maximize();
-            Thread.sleep(3000);
-
-            // click the markdown button
-            chromeDriver.findElement(By.className("-CJZhr1W053faqFXFYgXO")).click();
+            // click the markdown button to open it
+            chromeDriver.findElement(By.xpath("//*[@aria-label='Switch to markdown']")).click();
+            Thread.sleep(2000);
 
         } catch (Exception e){
             //just here to assert test not passed
