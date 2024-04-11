@@ -106,7 +106,7 @@ public class RedditLogin {
                     .getShadowRoot()
                     .findElement(By.cssSelector("shreddit-drawer > div > shreddit-async-loader > div > shreddit-slotter"))
                     .getShadowRoot()
-                    .findElement(By.cssSelector("#login > faceplate-tabpanel > auth-flow-modal:nth-child(1) > div.w-100 > faceplate-tracker > button")).click();
+                    .findElement(By.cssSelector("#login > auth-flow-modal > div.w-100 > faceplate-tracker > button")).click();
             // ++++++++++++++
 
         } catch (Exception e){
@@ -139,7 +139,7 @@ public class RedditLogin {
                     .getShadowRoot()
                     .findElement(By.cssSelector("shreddit-drawer > div > shreddit-async-loader > div > shreddit-slotter"))
                     .getShadowRoot()
-                    .findElement(By.cssSelector("#login > faceplate-tabpanel > auth-flow-modal:nth-child(1) > div.w-100 > faceplate-tracker > button")).click();
+                    .findElement(By.cssSelector("#login > auth-flow-modal > div.w-100 > faceplate-tracker > button")).click();
             // ++++++++++++++
 
         } catch (Exception e){
@@ -172,7 +172,7 @@ public class RedditLogin {
                     .getShadowRoot()
                     .findElement(By.cssSelector("shreddit-drawer > div > shreddit-async-loader > div > shreddit-slotter"))
                     .getShadowRoot()
-                    .findElement(By.cssSelector("#login > faceplate-tabpanel > auth-flow-modal:nth-child(1) > div.w-100 > faceplate-tracker > button")).click();
+                    .findElement(By.cssSelector("#login > auth-flow-modal > div.w-100 > faceplate-tracker > button")).click();
             // ++++++++++++++
 
         } catch (Exception e){

@@ -39,7 +39,7 @@ public class RedditHomePage {
                 .getShadowRoot()
                 .findElement(By.cssSelector("shreddit-drawer > div > shreddit-async-loader > div > shreddit-slotter"))
                 .getShadowRoot()
-                .findElement(By.cssSelector("#login > faceplate-tabpanel > auth-flow-modal:nth-child(1) > div.w-100 > faceplate-tracker > button")).click();
+                .findElement(By.cssSelector("#login > auth-flow-modal > div.w-100 > faceplate-tracker > button")).click();
         // ++++++++++++++
         Thread.sleep(2000);
     }
@@ -75,6 +75,8 @@ public class RedditHomePage {
         // ---------------------------------------------------------------------------------
         try {
             // click on profile menu button twice to open and close it
+            chromeDriver.navigate().refresh(); //sometimes the page looks different than expected and idk why?
+            Thread.sleep(2000);
             chromeDriver.findElement(By.id("expand-user-drawer-button")).click();
             Thread.sleep(2000);
             chromeDriver.findElement(By.id("expand-user-drawer-button")).click();
